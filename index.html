@@ -5,133 +5,305 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Guía Turística | República Dominicana</title>
   <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --card: #f3f4f6;
+      --shadow: 0 14px 30px rgba(0,0,0,0.10);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      background-color: #ffffff;
-      color: #1f2933;
+      font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
+    /* HERO */
     header {
-      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+      position: relative;
+      height: 78vh;
+      min-height: 520px;
+      background-image: url('images/banner-zona-colonial.png');
       background-size: cover;
       background-position: center;
-      height: 75vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      display: grid;
+      place-items: center;
       color: white;
     }
 
-    header div {
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
       background: rgba(0,0,0,0.45);
-      padding: 30px;
-      border-radius: 12px;
     }
 
-    header h1 {
-      font-size: 3rem;
+    .hero {
+      position: relative;
+      z-index: 1;
+      width: min(980px, calc(100% - 40px));
+      padding: 28px;
+      border-radius: var(--radius);
+      backdrop-filter: blur(2px);
+    }
+
+    .hero h1 {
       margin: 0;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      letter-spacing: 0.5px;
     }
 
-    header p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 15px auto 0;
+    .hero p {
+      margin: 12px 0 0;
+      max-width: 740px;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.92);
+    }
+
+    /* NAV */
+    nav {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      width: min(980px, calc(100% - 40px));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(17,24,39,0.35);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(6px);
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
+    }
+
+    .links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.92);
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    nav a:hover {
+      background: rgba(255,255,255,0.14);
+    }
+
+    /* SECTIONS */
+    main {
+      width: min(1000px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 72px 0;
     }
 
     section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 70px 20px;
+      padding: 56px 0;
+      border-bottom: 1px solid #eef2f7;
+    }
+
+    section:last-child {
+      border-bottom: none;
     }
 
     h2 {
+      margin: 0 0 14px;
       font-size: 2rem;
-      margin-bottom: 20px;
+      letter-spacing: 0.2px;
     }
 
     .two-col {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      align-items: center;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: start;
     }
 
-    .two-col img {
+    @media (max-width: 860px) {
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      header {
+        min-height: 460px;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .img {
       width: 100%;
-      border-radius: 12px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      background: #e5e7eb;
     }
 
-    .highlight {
-      background-color: #f3f4f6;
-      padding: 40px;
-      border-radius: 16px;
+    .img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .label {
+      font-weight: 700;
+      margin: 0 0 10px;
+    }
+
+    .spanish {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .bodytext {
+      margin: 14px 0 0;
+      color: var(--text);
+      white-space: pre-line;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 10px;
     }
 
     footer {
+      padding: 44px 20px;
       text-align: center;
-      padding: 40px;
-      color: #6b7280;
-      font-size: 0.9rem;
+      color: var(--muted);
+      background: #fafafa;
+      border-top: 1px solid #eef2f7;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div>
+    <nav>
+      <div class="brand">Guía Turística</div>
+      <div class="links">
+        <a href="#historia">Historia</a>
+        <a href="#cultura">Cultura</a>
+        <a href="#geografia">Geografía</a>
+      </div>
+    </nav>
+
+    <div class="hero">
       <h1>República Dominicana</h1>
       <p>Un país del Caribe conocido por su historia, cultura vibrante y paisajes hermosos.</p>
+      <p class="muted">Proyecto de Español · 10° grado · Profesor Khromov</p>
     </div>
   </header>
 
-  <section>
-    <div class="two-col">
-      <div>
-        <h2>Historia</h2>
-        <p><strong>Español:</strong><br>
-        La República Dominicana tiene una historia muy interesante. El país fue colonizado por España y más tarde ganó su independencia.</p>
+  <main>
 
-        <p><strong>English notes:</strong><br>
-        Write your own facts here about colonization, independence, or an important historical figure like Juan Pablo Duarte.</p>
+    <section id="historia">
+      <div class="two-col">
+        <div>
+          <h2>Historia</h2>
+          <div class="card">
+            <div class="label">Español (Nivel 1)</div>
+            <p class="spanish">La República Dominicana tiene una historia muy interesante. El país fue colonizado por España y más tarde ganó su independencia.</p>
+
+            <p class="bodytext">Founding of the country and its capital
+Santo Domingo was founded in 1498, making it the oldest permanent European settlement in the Americas. The city’s Zona Colonial allows visitors to explore the earliest chapter of European history in the New World.
+
+Early Spanish colonial rule
+The Dominican Republic was Spain’s first major colonial base in the Americas. Historic sites like the Alcázar de Colón show the island’s early political importance.
+
+Independence and national pride
+The country became independent in 1844 after years of Haitian rule. This struggle shaped the strong sense of Dominican national identity seen today.
+
+Dictatorship of Rafael Trujillo
+Rafael Trujillo ruled the country from 1930 to 1961 as a violent dictator. His legacy still influences Dominican history and public memory.</p>
+          </div>
+        </div>
+
+        <div class="img">
+          <img src="images/historia-zona-colonial.png" alt="Zona Colonial en Santo Domingo">
+        </div>
       </div>
-      <img src="https://images.unsplash.com/photo-1587502536263-929f4df1b99f" alt="Zona Colonial Santo Domingo">
-    </div>
-  </section>
+    </section>
 
-  <section class="highlight">
-    <div class="two-col">
-      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba" alt="Merengue music">
-      <div>
-        <h2>Cultura</h2>
-        <p><strong>Español:</strong><br>
-        La música es muy importante en la República Dominicana. Un género popular es el merengue.</p>
+    <section id="cultura">
+      <div class="two-col">
+        <div class="img">
+          <img src="images/cultura-baile.png" alt="Baile tradicional en la República Dominicana">
+        </div>
 
-        <p><strong>English notes:</strong><br>
-        Add details about music, food, artists, or traditions you researched.</p>
+        <div>
+          <h2>Cultura</h2>
+          <div class="card">
+            <div class="label">Español (Nivel 1)</div>
+            <p class="spanish">La bachata es muy popular en la República Dominicana. Es una parte importante de la cultura.</p>
+
+            <p class="bodytext">Bachata originated in the Dominican Republic as working-class music and was once stigmatized by elites. Today, it is an internationally recognized genre and a major symbol of Dominican cultural identity.
+
+Food and daily life
+Dominican cuisine centers on staples like rice, beans, plantains, and meat, with dishes such as mangú being especially important. Meals are social events and often bring extended families together.
+
+Family and social culture
+Family plays a central role in Dominican life, with strong bonds across generations. Social interactions are warm, expressive, and often take place in shared community spaces.
+
+Baseball and national pride
+Baseball is the most popular sport in the country and a major source of national pride. Many Dominican players have become stars in Major League Baseball, making the sport a key part of cultural identity.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <div class="two-col">
-      <div>
-        <h2>Geografía</h2>
-        <p><strong>Español:</strong><br>
-        La República Dominicana tiene ciudades importantes y paisajes naturales. Santo Domingo es una ciudad famosa.</p>
+    <section id="geografia">
+      <div class="two-col">
+        <div>
+          <h2>Geografía</h2>
+          <div class="card">
+            <div class="label">Español (Nivel 1)</div>
+            <p class="spanish">La República Dominicana está en el Caribe, en la isla La Española. Tiene montañas, valles y playas.</p>
 
-        <p><strong>English notes:</strong><br>
-        Include facts about beaches, mountains, or why places like Punta Cana are important.</p>
+            <p class="bodytext">Location: The Dominican Republic is located on the island Hispaniola in the Caribbean.
+
+Climate: Hot, tropical weather along the coast, cooler weather in the interior.
+
+Island structure: DR occupies 2 thirds of the island and features mountains, valleys and tropical coastlines with cities all over.
+
+Major Cities: Moca, Santo Domingo, Santiago</p>
+          </div>
+        </div>
+
+        <div class="img">
+          <img src="images/geografia-mapa.png" alt="Mapa de la República Dominicana">
+        </div>
       </div>
-      <img src="https://images.unsplash.com/photo-1544986581-efac024faf62" alt="Punta Cana beach">
-    </div>
-  </section>
+    </section>
+
+  </main>
 
   <footer>
-    <p>Proyecto de Español · 10° grado · Profesor Khromov</p>
+    <p>Hecho para un proyecto escolar. Imágenes y texto pueden ajustarse según tus fuentes.</p>
   </footer>
 
 </body>
